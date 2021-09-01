@@ -1,46 +1,28 @@
-# Getting Started with Create React App
+# t오더 프론트엔드개발자 기술 면접 과제
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 요구사항
 
-## Available Scripts
+### 상품 리스트 페이지
 
-In the project directory, you can run:
+- 상품 리스트를 조회 할 수 있다.
+- 상품은 좌측으로 정렬된다.
+- 단일 상품을 장바구니에 추가 할 수 있다.
 
-### `npm start`
+### 장바구니
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- 현재 장바구니에 담긴 상품들을 조회 할 수 있다.
+- 현재 장바구니에 담긴 상품들을 N 개 주문 할 수 있다.
+- 현재 장바구니에 담긴 상품들을 N 개 제거 할 수 있다.
+- 최종 결제 금액을 조회 할 수 있다.
+- 증가한 장바구니 가로 영역만큼 상품 리스트 가로 비율이 감소한다.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 주문
 
-### `npm test`
+- 장바구니에 담긴 상품들을 제거한다.
+- 장바구니를 닫는다.
+- "주문이 완료되었습니다" 메시지 박스가 나타나며, 3초 후 사라진다.
+- 상품 리스트의 가로 비율이 원상 복구 된다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 가산 사항
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 카테고리 클릭 시 ScrollSpy 기능을 제공한다.
