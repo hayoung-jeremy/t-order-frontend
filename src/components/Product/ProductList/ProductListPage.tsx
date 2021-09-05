@@ -1,17 +1,14 @@
 import {
   StyledProductListWrapper,
   StyledProductCategoryTitle,
-  StyledProductListItem,
 } from "./ProductListPage.style";
 
 import dummy from "db/mock.json";
-
-console.log(dummy);
+import ProductListItem from "../ProductListItem/ProductListItem";
 
 const categoryList = dummy.categories;
-console.log(categoryList);
 
-const data = categoryList.map((item) => {
+const productData = categoryList.map((item) => {
   const categoryTitle = item.categoryName;
   const productList = item.categoryItems.map((item) => {
     const itemName = item.itemName;
@@ -19,33 +16,28 @@ const data = categoryList.map((item) => {
     const itemPrice = item.itemPrice;
     const isItemSoldOut = item.itemSoldOutFlag;
 
-    return <StyledProductListItem>{itemName}</StyledProductListItem>;
+    return (
+      <ProductListItem
+        key={item.itemId}
+        itemName={itemName}
+        itemImg={itemImg}
+        itemPrice={itemPrice}
+        isItemSoldOut={isItemSoldOut}
+      ></ProductListItem>
+    );
   });
 
   return (
-    <section className="product-list-container">
+    <section key={item.categoryId} className="product-list-container">
       <StyledProductCategoryTitle>{categoryTitle}</StyledProductCategoryTitle>
       <ul className="product-list">{productList}</ul>
     </section>
   );
 });
-console.log(data);
+console.log(productData);
 
 const ProductListPage = () => {
-  return <StyledProductListWrapper>{data}</StyledProductListWrapper>;
-  // <StyledProductListWrapper>
-  //   <section className="product-list-container">
-  //     <StyledProductCategoryTitle>category name</StyledProductCategoryTitle>
-  //     <ul className="product-list">
-  //       <StyledProductListItem>item</StyledProductListItem>
-  //       <StyledProductListItem>item</StyledProductListItem>
-  //       <StyledProductListItem>item</StyledProductListItem>
-  //       <StyledProductListItem>item</StyledProductListItem>
-  //       <StyledProductListItem>item</StyledProductListItem>
-  //       <StyledProductListItem>item</StyledProductListItem>
-  //     </ul>
-  //   </section>
-  // </StyledProductListWrapper>
+  return <StyledProductListWrapper>{productData}</StyledProductListWrapper>;
 };
 
 export default ProductListPage;
