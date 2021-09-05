@@ -1,4 +1,3 @@
-import PALETTE from "constants/palette";
 import styled from "styled-components";
 
 const StyledFooter = styled.footer`
@@ -15,20 +14,4 @@ const StyledFooter = styled.footer`
   align-items: center;
 `;
 
-const CartBtn = styled.span`
-  color: ${PALETTE.WHITE};
-  display: flex;
-  align-items: center;
-  height: 100%;
-
-  &:before {
-    content: "";
-    display: block;
-    width: 24px;
-    height: 24px;
-    background: url("assets/icon/icon_cart.png") no-repeat 0 center/cover;
-    margin-right: 8px;
-  }
-`;
-
-export { StyledFooter, CartBtn };
+export default StyledFooter;

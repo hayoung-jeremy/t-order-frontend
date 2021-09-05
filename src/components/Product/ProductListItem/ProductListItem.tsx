@@ -1,4 +1,3 @@
-import React from "react";
 import { StyledProductListItem } from "./ProductListItem.style";
 
 interface Props {
@@ -30,7 +29,7 @@ const ProductListItem = ({
         </div>
       )}
       <div className="product-info">
-        <p>{itemName}</p>
+        <p className="product-name">{itemName}</p>
         <p>{itemPrice!.toLocaleString()}원</p>
       </div>
     </StyledProductListItem>

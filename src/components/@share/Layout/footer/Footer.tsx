@@ -1,10 +1,15 @@
 import React from "react";
-import { CartBtn, StyledFooter } from "./Footer.style";
+import StyledFooter from "./Footer.style";
+import Button from "components/@share/Button/Button";
+
+const icon_cart = "assets/icon/icon_cart.png";
 
 const Footer = () => {
   return (
     <StyledFooter>
-      <CartBtn>장바구니</CartBtn>
+      <Button color="WHITE" withIcon iconUrl={icon_cart}>
+        장바구니
+      </Button>
     </StyledFooter>
   );
 };

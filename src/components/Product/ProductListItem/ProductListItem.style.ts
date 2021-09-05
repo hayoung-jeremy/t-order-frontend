@@ -41,6 +41,10 @@ const StyledProductListItem = styled.li`
     justify-content: center;
     align-items: center;
     gap: 8px;
+
+    & .product-name {
+      font-size: 1.25vw;
+    }
   }
 `;
 
