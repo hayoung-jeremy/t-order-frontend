@@ -10,16 +10,15 @@ const StyledButton = styled.button`
   border-radius: 10px;
   color: ${PALETTE.MAIN};
   cursor: pointer;
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
   text-align: center;
-  transition: transform 0.2s;
+  transition: 0.2s;
 
   &:active {
     background-color: ${rgba(PALETTE.MAIN, 0.15)};
-    transform: translateY(2px);
   }
 `;
 
