@@ -1,7 +1,7 @@
 import StyledGridContainer from "./GridContainer.style";
 
 interface Props {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const GridContainer = ({ children }: Props) => {
