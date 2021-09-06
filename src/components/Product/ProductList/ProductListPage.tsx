@@ -1,42 +1,66 @@
+import { useEffect, useState } from "react";
+
 import {
   StyledProductListWrapper,
   StyledProductCategoryTitle,
 } from "./ProductListPage.style";
 
-import dummy from "db/mock.json";
 import ProductListItem from "../ProductListItem/ProductListItem";
 
-const categoryList = dummy.categories;
+interface categoryProps {
+  categoryId?: number;
+  categoryName?: string;
+  categoryItems?: categoryItemProps[];
+}
 
-const productData = categoryList.map((item) => {
-  const categoryTitle = item.categoryName;
-  const productList = item.categoryItems.map((item) => {
-    const itemName = item.itemName;
-    const itemImg = item.itemImageUrl;
-    const itemPrice = item.itemPrice;
-    const isItemSoldOut = item.itemSoldOutFlag;
+interface categoryItemProps {
+  itemId?: number;
+  itemName?: string;
+  itemPrice?: number;
+  itemSoldOutFlag?: boolean;
+  itemImageUrl?: string;
+}
+
+const ProductListPage = () => {
+  const [categoryList, setCategoryList] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3001/categories")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setCategoryList(data);
+      });
+  }, []);
+
+  const productData = categoryList.map((item: categoryProps) => {
+    const categoryTitle = item.categoryName;
+    const productList = item.categoryItems!.map((item) => {
+      const itemName = item.itemName;
+      const itemImg = item.itemImageUrl;
+      const itemPrice = item.itemPrice;
+      const isItemSoldOut = item.itemSoldOutFlag;
+
+      return (
+        <ProductListItem
+          key={item.itemId}
+          itemName={itemName}
+          itemImg={itemImg}
+          itemPrice={itemPrice}
+          isItemSoldOut={isItemSoldOut}
+        ></ProductListItem>
+      );
+    });
 
     return (
-      <ProductListItem
-        key={item.itemId}
-        itemName={itemName}
-        itemImg={itemImg}
-        itemPrice={itemPrice}
-        isItemSoldOut={isItemSoldOut}
-      ></ProductListItem>
+      <section key={item.categoryId} className="product-list-container">
+        <StyledProductCategoryTitle>{categoryTitle}</StyledProductCategoryTitle>
+        <ul className="product-list">{productList}</ul>
+      </section>
     );
   });
 
-  return (
-    <section key={item.categoryId} className="product-list-container">
-      <StyledProductCategoryTitle>{categoryTitle}</StyledProductCategoryTitle>
-      <ul className="product-list">{productList}</ul>
-    </section>
-  );
-});
-console.log(productData);
-
-const ProductListPage = () => {
   return <StyledProductListWrapper>{productData}</StyledProductListWrapper>;
 };
 

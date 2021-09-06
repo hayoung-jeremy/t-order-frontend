@@ -1,10 +1,10 @@
 import { StyledProductListItem } from "./ProductListItem.style";
 
 interface Props {
-  itemName: string;
+  itemName?: string;
   itemImg?: string;
   itemPrice?: number;
-  isItemSoldOut: boolean;
+  isItemSoldOut?: boolean;
 }
 
 const ProductListItem = ({
