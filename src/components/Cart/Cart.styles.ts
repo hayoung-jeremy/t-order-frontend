@@ -19,23 +19,31 @@ const StyledCart = styled.aside`
 
   & .cart-header {
     padding-top: 3.125vw;
+    margin-bottom: 20px;
 
     & .cart-title {
       font-size: 1.5rem;
       font-weight: bold;
-      /* margin-bottom: 28px; */
     }
   }
 
   & .cart-body {
+    overflow-y: scroll;
+    height: 74.64vh;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   & .cart-footer {
     position: absolute;
     bottom: 80px;
     right: 0;
+    z-index: 2;
     width: 100%;
     height: 9.375vw;
+    background-color: ${PALETTE.WHITE};
     box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.15);
     display: grid;
     grid-template-rows: repeat(2, 1fr);

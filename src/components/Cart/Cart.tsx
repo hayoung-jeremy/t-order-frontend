@@ -17,6 +17,11 @@ const Cart = ({ isCartOpen }: Props) => {
         <ul>
           <CartListItem />
           <CartListItem />
+          <CartListItem />
+          <CartListItem />
+          <CartListItem />
+          <CartListItem />
+          <CartListItem />
         </ul>
       </div>
       <div className="cart-footer">
