@@ -2,16 +2,39 @@ import styled, { css } from "styled-components";
 
 export interface ButtonProps {
   children?: React.ReactNode;
-  color?: string;
-  size?: string;
   onClick?: () => void;
+  color?: string;
+  bgColor?: string;
+  outlined?: boolean;
+  rounded?: boolean;
+  fontWeight?: string | number;
+  size?: string;
   withIcon?: boolean;
   iconUrl?: string;
   iconBtn?: boolean;
-  outlined?: boolean;
+  textBtn?: boolean;
 }
 
-const buttonStyles = css<ButtonProps>`
+const buttonTypes = css<ButtonProps>`
+  /* outlined */
+  ${({ theme, color, outlined }) => {
+    const selectedColor = theme[color!];
+    return (
+      outlined &&
+      css`
+        border: 2px solid ${selectedColor};
+      `
+    );
+  }}
+
+  /* rounded */
+  ${(props) =>
+    props.rounded &&
+    css`
+      border-radius: 10px;
+    `}
+  
+  /* withIcon */
   ${(props) =>
     props.withIcon &&
     css`
@@ -28,6 +51,8 @@ const buttonStyles = css<ButtonProps>`
         background: url("${props.iconUrl}") no-repeat 0 center/cover;
       }
     `}
+
+  /* iconBtn */
   ${(props) =>
     props.iconBtn &&
     css`
@@ -36,30 +61,40 @@ const buttonStyles = css<ButtonProps>`
       height: 42px;
       background: url("${props.iconUrl}") no-repeat 0 center/cover; ;
     `}
+  
+    /* textBtn */
+  ${(props) =>
+    props.textBtn &&
+    css`
+      background: transparent;
+    `}
 `;
 
 const colorStyles = css<ButtonProps>`
-  ${({ theme, color }) => {
-    const selected = theme[color!];
+  /* color, bgColor */
+  ${({ theme, color, bgColor }) => {
+    const selectedColor = theme[color!];
+    const selectedBgColor = theme[bgColor!];
     return css`
-      color: ${selected};
+      color: ${selectedColor};
+      background-color: ${selectedBgColor};
     `;
   }}
-  ${({ theme, color, outlined }) => {
-    const selected = theme[color!];
-    return (
-      outlined &&
-      css`
-        border: 2px solid ${selected};
-      `
-    );
+`;
+
+const buttonStyles = css<ButtonProps>`
+  /* fontWeight */
+  ${(props) => {
+    const fontWeight = props.fontWeight;
+    return css`
+      font-weight: ${fontWeight};
+    `;
   }}
 `;
 
 const StyledButton = styled.button`
   background-color: transparent;
   padding: 0.5rem 0.75rem;
-  border-radius: 10px;
   cursor: pointer;
   font-size: 1.125rem;
   font-weight: 500;
@@ -68,8 +103,9 @@ const StyledButton = styled.button`
   text-align: center;
   transition: 0.2s;
 
-  ${colorStyles}
   ${buttonStyles}
+  ${colorStyles}
+  ${buttonTypes}
 `;
 
 export default StyledButton;

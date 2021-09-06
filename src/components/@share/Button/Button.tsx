@@ -2,23 +2,31 @@ import StyledButton, { ButtonProps } from "./Button.styles";
 
 const Button = ({
   children,
-  color,
-  size,
   onClick,
+  color,
+  bgColor,
+  outlined,
+  rounded,
+  fontWeight,
+  size,
   withIcon,
   iconUrl,
   iconBtn,
-  outlined,
+  textBtn,
 }: ButtonProps) => {
   return (
     <StyledButton
-      color={color}
-      size={size}
       onClick={onClick}
+      color={color}
+      bgColor={bgColor}
+      outlined={outlined}
+      rounded={rounded}
+      fontWeight={fontWeight}
+      size={size}
       withIcon={withIcon}
       iconUrl={iconUrl}
       iconBtn={iconBtn}
-      outlined={outlined}
+      textBtn={textBtn}
     >
       {children}
     </StyledButton>
