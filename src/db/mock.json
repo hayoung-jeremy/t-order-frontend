@@ -8,7 +8,7 @@
           "itemId": 1,
           "itemName": "부산국제시장 떡볶이(밀가래떡)",
           "itemPrice": 8900,
-          "itemSoldOutFlag": false,
+          "itemSoldOutFlag": true,
           "itemImageUrl": "https://s3.ap-northeast-2.amazonaws.com/images.orderhae.com/TPAY_GDR008/M00427/1620354409item_700X700_toJPEGBot.jpg"
         },
         {

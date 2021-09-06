@@ -29,7 +29,8 @@ const StyledProductListItem = styled.li`
   & .soldout-cover {
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.6) url("assets/icon/icon_soldout.png") no-repeat
+      center 30%/90%;
     position: absolute;
     top: 0;
     left: 0;

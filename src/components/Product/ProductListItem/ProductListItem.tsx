@@ -16,18 +16,10 @@ const ProductListItem = ({
 }: Props) => {
   return (
     <StyledProductListItem {...rest}>
-      {isItemSoldOut ? (
-        <div className="soldout-cover">
-          <img
-            src="assets/icon/icon_soldout.png"
-            alt="current Item is SOLD OUT"
-          />
-        </div>
-      ) : (
-        <div className="product-img">
-          <img src={itemImg} alt={itemName} />
-        </div>
-      )}
+      {isItemSoldOut ? <div className="soldout-cover"></div> : null}
+      <div className="product-img">
+        <img src={itemImg} alt={itemName} />
+      </div>
       <div className="product-info">
         <p className="product-name">{itemName}</p>
         <p>{itemPrice!.toLocaleString()}원</p>

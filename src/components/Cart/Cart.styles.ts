@@ -60,6 +60,7 @@ const StyledCart = styled.aside`
       display: grid;
       grid-template-columns: 8.28125vw auto;
       align-content: stretch;
+      font-weight: bold;
     }
   }
 `;
