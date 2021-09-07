@@ -3,16 +3,20 @@ import React from "react";
 import StyledCart from "./Cart.styles";
 import CartListItem from "./CartListItem/CartListItem";
 import Button from "components/@share/Button/Button";
-import { useAppSelector } from "features/store/rootReducer";
+import { useAppDispatch, useAppSelector } from "features/store/rootReducer";
+import { clearCart, toggleCartOpen } from "features/cart/cartReducer";
 
-interface Props {
-  isCartOpen: boolean;
-}
-
-const Cart = ({ isCartOpen }: Props) => {
+const Cart = () => {
   const cart = useAppSelector((state) => state.cart);
+  const dispatch = useAppDispatch();
+  const handleClearCart = () => {
+    dispatch(clearCart());
+  };
+  const handleCartOpen = () => {
+    dispatch(toggleCartOpen());
+  };
   return (
-    <StyledCart className={isCartOpen ? "" : "hide"}>
+    <StyledCart className={cart.isCartOpen ? "" : "hide"}>
       <div className="cart-header">
         <h3 className="cart-title">장바구니</h3>
       </div>
@@ -21,14 +25,7 @@ const Cart = ({ isCartOpen }: Props) => {
           <p className="empty-sign">장바구니가 비어있습니다.</p>
         ) : (
           cart.cartItems.map((cartItem) => (
-            <CartListItem
-              key={cartItem.itemId}
-              cartItem={cartItem}
-              // itemName={cartItem.itemName}
-              // itemPrice={cartItem.itemPrice}
-              // itemSoldOutFlag={cartItem.itemSoldOutFlag}
-              // cartItemQuantity={cartItem.cartItemQuantity}
-            />
+            <CartListItem key={cartItem.itemId} cartItem={cartItem} />
           ))
         )}
       </div>
@@ -40,10 +37,23 @@ const Cart = ({ isCartOpen }: Props) => {
           </span>
         </div>
         <div className="cart-controller">
-          <Button color="WHITE" bgColor="GREY600" fontWeight="bold">
+          <Button
+            color="WHITE"
+            bgColor="GREY600"
+            fontWeight="bold"
+            onClick={() => handleCartOpen()}
+          >
             닫기
           </Button>
-          <Button color="WHITE" bgColor="MAIN" fontWeight="bold">
+          <Button
+            color="WHITE"
+            bgColor="MAIN"
+            fontWeight="bold"
+            onClick={() => {
+              handleClearCart();
+              handleCartOpen();
+            }}
+          >
             주문하기
           </Button>
         </div>

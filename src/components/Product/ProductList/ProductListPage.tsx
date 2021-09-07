@@ -6,12 +6,13 @@ import {
   StyledProductCategoryTitle,
 } from "./ProductListPage.style";
 import ProductListItem from "../ProductListItem/ProductListItem";
-import { useDispatch } from "react-redux";
-import { addToCart } from "features/cart/cartReducer";
+import { addToCart, toggleCartOpen } from "features/cart/cartReducer";
+import { useAppDispatch, useAppSelector } from "features/store/rootReducer";
 
 const ProductListPage = () => {
   const [categoryList, setCategoryList] = useState([]);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  const cart = useAppSelector((state) => state.cart);
 
   useEffect(() => {
     fetch("http://localhost:3001/categories")
@@ -28,6 +29,11 @@ const ProductListPage = () => {
     const productList = item.categoryItems!.map((item) => {
       const handleAddToCart = (item: CategoryItemProps) => {
         dispatch(addToCart(item));
+        if (!cart.isCartOpen) {
+          dispatch(toggleCartOpen());
+        } else {
+          return null;
+        }
       };
       const itemName = item.itemName;
       const itemImg = item.itemImageUrl;
@@ -41,7 +47,9 @@ const ProductListPage = () => {
           itemImg={itemImg}
           itemPrice={itemPrice}
           isItemSoldOut={isItemSoldOut}
-          onClick={() => handleAddToCart(item)}
+          onClick={() => {
+            handleAddToCart(item);
+          }}
         ></ProductListItem>
       );
     });

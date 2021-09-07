@@ -10,7 +10,7 @@ const App = () => {
       <Header />
       <GridContainer>
         <ProductListPage />
-        <Cart isCartOpen={true} />
+        <Cart />
       </GridContainer>
       <Footer />
     </>

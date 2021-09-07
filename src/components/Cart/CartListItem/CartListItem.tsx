@@ -5,6 +5,7 @@ import StyledCartListItem from "./CartListItem.style";
 import { CategoryItemProps } from "types";
 import { useAppDispatch } from "features/store/rootReducer";
 import {
+  addToCart,
   decreaseCartItemQuantity,
   removeFromCart,
 } from "features/cart/cartReducer";
@@ -21,8 +22,11 @@ const CartListItem = ({ cartItem }: Props) => {
   const handleRemoveFromCart = (cartItem: CategoryItemProps) => {
     dispatch(removeFromCart(cartItem));
   };
-  const handleDecrease = (cartItem: CategoryItemProps) => {
+  const handleDecreaseCartItemQuantity = (cartItem: CategoryItemProps) => {
     dispatch(decreaseCartItemQuantity(cartItem));
+  };
+  const handleIncreaseCartItemQuantity = (cartItem: CategoryItemProps) => {
+    dispatch(addToCart(cartItem));
   };
   return (
     <StyledCartListItem>
@@ -39,12 +43,16 @@ const CartListItem = ({ cartItem }: Props) => {
       </div>
       <div className="cart-item-body">
         <div className="cart-item-counter">
-          <Button iconBtn iconUrl={icon_increase} />
+          <Button
+            iconBtn
+            iconUrl={icon_increase}
+            onClick={() => handleIncreaseCartItemQuantity(cartItem)}
+          />
           <span>{cartItem.cartItemQuantity} 개</span>
           <Button
             iconBtn
             iconUrl={icon_decrease}
-            onClick={() => handleDecrease(cartItem)}
+            onClick={() => handleDecreaseCartItemQuantity(cartItem)}
           />
         </div>
         <div className="cart-item-price-total">
