@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import StyledCart from "./Cart.styles";
 import CartListItem from "./CartListItem/CartListItem";
 import Button from "components/@share/Button/Button";
 import { useAppDispatch, useAppSelector } from "features/store/rootReducer";
-import { clearCart, toggleCartOpen } from "features/cart/cartReducer";
+import { clearCart, getTotal, toggleCartOpen } from "features/cart/cartReducer";
 
 const Cart = () => {
   const cart = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getTotal());
+  }, [cart, dispatch]);
   const handleClearCart = () => {
     dispatch(clearCart());
   };
@@ -33,7 +36,7 @@ const Cart = () => {
         <div className="cart-item-info">
           <span>총 {cart.cartItems.length}가지</span>
           <span className="cart-item-total-price">
-            합계 <span>{cart.cartTotalAmount}원</span>
+            합계 <span>{cart.cartTotalAmount?.toLocaleString()}원</span>
           </span>
         </div>
         <div className="cart-controller">

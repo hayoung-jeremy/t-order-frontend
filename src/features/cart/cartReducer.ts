@@ -1,10 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { cartListProps, CategoryItemProps } from "types";
+import { CartListProps, CategoryItemProps } from "types";
 
-const initialState: cartListProps = {
+const initialState: CartListProps = {
   cartItems: [],
-  cartTotalQuantity: 0,
   cartTotalAmount: 0,
   isCartOpen: false,
 };
@@ -21,7 +20,7 @@ const cartSlice = createSlice({
       const itemSoldOut = action.payload.itemSoldOutFlag;
       if (!itemSoldOut) {
         if (itemIdx >= 0) {
-          state.cartItems[itemIdx].cartItemQuantity += 1;
+          state.cartItems[itemIdx].cartItemQuantity! += 1;
         } else {
           // 다른 상품 추가 시, 기존 상품에 새로운 상품 추가 (첫 추가 시 상품 수량 : 1)
           const currentProduct = { ...action.payload, cartItemQuantity: 1 };
@@ -40,14 +39,20 @@ const cartSlice = createSlice({
       const itemIdx = state.cartItems.findIndex(
         (item) => item.itemId === action.payload.itemId
       );
-      if (state.cartItems[itemIdx].cartItemQuantity > 1) {
-        state.cartItems[itemIdx].cartItemQuantity -= 1;
+      if (state.cartItems[itemIdx].cartItemQuantity! > 1) {
+        state.cartItems[itemIdx].cartItemQuantity! -= 1;
       } else if (state.cartItems[itemIdx].cartItemQuantity === 1) {
         const nextCartItems = state.cartItems.filter(
           (cartItem) => cartItem.itemId !== action.payload.itemId
         );
         state.cartItems = nextCartItems;
       }
+    },
+    getTotal(state: CartListProps) {
+      let total = state.cartItems.reduce((prev, next: CategoryItemProps) => {
+        return prev + next.cartItemQuantity! * next.itemPrice!;
+      }, 0);
+      state.cartTotalAmount = total;
     },
     clearCart(state) {
       state.cartItems = [];
@@ -62,6 +67,7 @@ export const {
   addToCart,
   removeFromCart,
   decreaseCartItemQuantity,
+  getTotal,
   clearCart,
   toggleCartOpen,
 } = cartSlice.actions;

@@ -13,9 +13,8 @@ export interface CategoryItemProps {
   cartItemQuantity?: number;
 }
 
-export interface cartListProps {
-  cartItems: CategoryItemProps[] | any[];
-  cartTotalQuantity?: number;
+export interface CartListProps {
+  cartItems: CategoryItemProps[];
   cartTotalAmount?: number;
   isCartOpen?: boolean;
 }
