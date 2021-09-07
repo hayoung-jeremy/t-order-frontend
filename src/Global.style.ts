@@ -7,6 +7,9 @@ const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
+  li{
+    list-style: none;
+  }
   body{
     font-family: "Noto Sans KR", sans-serif;
   }

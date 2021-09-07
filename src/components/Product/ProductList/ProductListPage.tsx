@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { categoryProps, categoryItemProps } from "types";
+import { CategoryProps, CategoryItemProps } from "types";
 import {
   StyledProductListWrapper,
   StyledProductCategoryTitle,
@@ -23,10 +23,10 @@ const ProductListPage = () => {
       });
   }, []);
 
-  const productData = categoryList.map((item: categoryProps) => {
+  const productData = categoryList.map((item: CategoryProps) => {
     const categoryTitle = item.categoryName;
     const productList = item.categoryItems!.map((item) => {
-      const handleAddToCart = (item: categoryItemProps) => {
+      const handleAddToCart = (item: CategoryItemProps) => {
         dispatch(addToCart(item));
       };
       const itemName = item.itemName;

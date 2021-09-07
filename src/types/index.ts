@@ -1,10 +1,10 @@
-export interface categoryProps {
+export interface CategoryProps {
   categoryId?: number;
   categoryName?: string;
-  categoryItems?: categoryItemProps[];
+  categoryItems?: CategoryItemProps[];
 }
 
-export interface categoryItemProps {
+export interface CategoryItemProps {
   itemId?: number;
   itemName?: string;
   itemPrice?: number;
@@ -14,7 +14,7 @@ export interface categoryItemProps {
 }
 
 export interface cartListProps {
-  cartItems: categoryItemProps[] | any[];
+  cartItems: CategoryItemProps[] | any[];
   cartTotalQuantity?: number;
   cartTotalAmount?: number;
   isCartOpen?: boolean;
