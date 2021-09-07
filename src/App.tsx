@@ -4,12 +4,16 @@ import Footer from "components/@share/Layout/footer/Footer";
 import ProductListPage from "components/Product/ProductList/ProductListPage";
 import Cart from "components/Cart/Cart";
 import TableIndicator from "components/@share/Layout/indicator/TableIndicator";
+import Nav from "components/Nav/Nav";
 
 const App = () => {
   return (
     <>
-      <Header />
-      <TableIndicator />
+      <Header>
+        <Nav />
+        <TableIndicator />
+      </Header>
+
       <GridContainer>
         <ProductListPage />
         <Cart />
