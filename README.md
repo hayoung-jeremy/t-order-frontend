@@ -1,5 +1,25 @@
 # t오더 프론트엔드개발자 기술 면접 과제
 
+## 프로젝트 실행
+
+```
+npm i
+npm start
+npm run serve
+```
+
+`npm i` : 프로젝트 설치  
+`npm start` : 프로젝트 실행  
+`npm run serve` : mock server 실행(json-server / port:3001)
+
+## 기술 스택
+
+- build : create-react-app
+- language : typescript
+- SPA framework : react
+- CSS in JS : styled-components, scss
+- global state management : react-redux, redux-toolkit
+
 ## 요구사항
 
 ### 상품 리스트 페이지
@@ -25,4 +45,4 @@
 
 ### 가산 사항
 
-- 카테고리 클릭 시 ScrollSpy 기능을 제공한다.
+- [ ] 카테고리 클릭 시 ScrollSpy 기능을 제공한다.
