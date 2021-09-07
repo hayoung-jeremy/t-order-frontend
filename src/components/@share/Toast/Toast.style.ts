@@ -20,8 +20,7 @@ const StyledToast = styled.div`
   transition: 0.3s;
 
   &.hide {
-    opacity: 0;
-    top: 100%;
+    display: none;
   }
 `;
 
