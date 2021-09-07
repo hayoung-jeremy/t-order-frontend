@@ -18,12 +18,16 @@ const cartSlice = createSlice({
         // 동일 상품 추가 시, 개별 추가가 아닌 수량 증가
         (item) => item.itemId === action.payload.itemId
       );
-      if (itemIdx >= 0) {
-        state.cartItems[itemIdx].cartItemQuantity += 1;
-      } else {
-        // 다른 상품 추가 시, 기존 상품에 새로운 상품 추가 (첫 추가 시 상품 수량 : 1)
-        const tempProduct = { ...action.payload, cartItemQuantity: 1 };
-        state.cartItems.push(tempProduct);
+      const itemSoldOut = action.payload.itemSoldOutFlag;
+      if (!itemSoldOut) {
+        if (itemIdx >= 0) {
+          state.cartItems[itemIdx].cartItemQuantity += 1;
+        } else {
+          // 다른 상품 추가 시, 기존 상품에 새로운 상품 추가 (첫 추가 시 상품 수량 : 1)
+          const tempProduct = { ...action.payload, cartItemQuantity: 1 };
+          state.cartItems.push(tempProduct);
+        }
+        // 상품이 품절 되었습니다 표시
       }
     },
   },
