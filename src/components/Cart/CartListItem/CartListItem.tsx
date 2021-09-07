@@ -3,30 +3,38 @@ import React from "react";
 import Button from "components/@share/Button/Button";
 import StyledCartListItem from "./CartListItem.style";
 import { CategoryItemProps } from "types";
+import { useAppDispatch } from "features/store/rootReducer";
+import { removeFromCart } from "features/cart/cartReducer";
 
 const icon_increase = "assets/icon/icon_increase.png";
 const icon_decrease = "assets/icon/icon_decrease.png";
 
-const CartListItem = ({
-  itemId,
-  itemName,
-  itemPrice,
-  itemSoldOutFlag,
-  cartItemQuantity,
-}: CategoryItemProps) => {
-  const totalPrice = itemPrice! * cartItemQuantity!;
+interface Props {
+  cartItem: CategoryItemProps;
+}
+const CartListItem = ({ cartItem }: Props) => {
+  const dispatch = useAppDispatch();
+  const totalPrice = cartItem.itemPrice! * cartItem.cartItemQuantity!;
+  const handleRemoveFromCart = (cartItem: CategoryItemProps) => {
+    dispatch(removeFromCart(cartItem));
+  };
   return (
     <StyledCartListItem>
       <div className="cart-item-header">
-        <h4 className="product-name">{itemName}</h4>
-        <Button color="MAIN" outlined rounded>
+        <h4 className="product-name">{cartItem.itemName}</h4>
+        <Button
+          color="MAIN"
+          outlined
+          rounded
+          onClick={() => handleRemoveFromCart(cartItem)}
+        >
           삭제
         </Button>
       </div>
       <div className="cart-item-body">
         <div className="cart-item-counter">
           <Button iconBtn iconUrl={icon_increase} />
-          <span>{cartItemQuantity} 개</span>
+          <span>{cartItem.cartItemQuantity} 개</span>
           <Button iconBtn iconUrl={icon_decrease} />
         </div>
         <div className="cart-item-price-total">

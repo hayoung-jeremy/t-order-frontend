@@ -23,10 +23,11 @@ const Cart = ({ isCartOpen }: Props) => {
           cart.cartItems.map((cartItem) => (
             <CartListItem
               key={cartItem.itemId}
-              itemName={cartItem.itemName}
-              itemPrice={cartItem.itemPrice}
-              itemSoldOutFlag={cartItem.itemSoldOutFlag}
-              cartItemQuantity={cartItem.cartItemQuantity}
+              cartItem={cartItem}
+              // itemName={cartItem.itemName}
+              // itemPrice={cartItem.itemPrice}
+              // itemSoldOutFlag={cartItem.itemSoldOutFlag}
+              // cartItemQuantity={cartItem.cartItemQuantity}
             />
           ))
         )}
