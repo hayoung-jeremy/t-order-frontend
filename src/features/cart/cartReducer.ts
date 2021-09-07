@@ -30,14 +30,28 @@ const cartSlice = createSlice({
         // 상품이 품절 되었습니다 표시
       }
     },
-    removeFromCart(state, action) {
+    removeFromCart(state, action: PayloadAction<CategoryItemProps>) {
       const nextCartItems = state.cartItems.filter(
         (cartItem) => cartItem.itemId !== action.payload.itemId
       );
       state.cartItems = nextCartItems;
     },
+    decreaseCartItemQuantity(state, action: PayloadAction<CategoryItemProps>) {
+      const itemIdx = state.cartItems.findIndex(
+        (item) => item.itemId === action.payload.itemId
+      );
+      if (state.cartItems[itemIdx].cartItemQuantity > 1) {
+        state.cartItems[itemIdx].cartItemQuantity -= 1;
+      } else if (state.cartItems[itemIdx].cartItemQuantity === 1) {
+        const nextCartItems = state.cartItems.filter(
+          (cartItem) => cartItem.itemId !== action.payload.itemId
+        );
+        state.cartItems = nextCartItems;
+      }
+    },
   },
 });
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, decreaseCartItemQuantity } =
+  cartSlice.actions;
 export default cartSlice.reducer;

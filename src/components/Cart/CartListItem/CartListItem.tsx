@@ -4,7 +4,10 @@ import Button from "components/@share/Button/Button";
 import StyledCartListItem from "./CartListItem.style";
 import { CategoryItemProps } from "types";
 import { useAppDispatch } from "features/store/rootReducer";
-import { removeFromCart } from "features/cart/cartReducer";
+import {
+  decreaseCartItemQuantity,
+  removeFromCart,
+} from "features/cart/cartReducer";
 
 const icon_increase = "assets/icon/icon_increase.png";
 const icon_decrease = "assets/icon/icon_decrease.png";
@@ -17,6 +20,9 @@ const CartListItem = ({ cartItem }: Props) => {
   const totalPrice = cartItem.itemPrice! * cartItem.cartItemQuantity!;
   const handleRemoveFromCart = (cartItem: CategoryItemProps) => {
     dispatch(removeFromCart(cartItem));
+  };
+  const handleDecrease = (cartItem: CategoryItemProps) => {
+    dispatch(decreaseCartItemQuantity(cartItem));
   };
   return (
     <StyledCartListItem>
@@ -35,7 +41,11 @@ const CartListItem = ({ cartItem }: Props) => {
         <div className="cart-item-counter">
           <Button iconBtn iconUrl={icon_increase} />
           <span>{cartItem.cartItemQuantity} 개</span>
-          <Button iconBtn iconUrl={icon_decrease} />
+          <Button
+            iconBtn
+            iconUrl={icon_decrease}
+            onClick={() => handleDecrease(cartItem)}
+          />
         </div>
         <div className="cart-item-price-total">
           {totalPrice.toLocaleString()} 원
