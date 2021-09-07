@@ -5,6 +5,7 @@ interface Props {
   itemImg?: string;
   itemPrice?: number;
   isItemSoldOut?: boolean;
+  onClick?: () => void;
 }
 
 const ProductListItem = ({
@@ -12,10 +13,10 @@ const ProductListItem = ({
   itemImg,
   itemPrice,
   isItemSoldOut,
-  ...rest
+  onClick,
 }: Props) => {
   return (
-    <StyledProductListItem {...rest}>
+    <StyledProductListItem onClick={onClick}>
       {isItemSoldOut ? <div className="soldout-cover"></div> : null}
       <div className="product-img">
         <img src={itemImg} alt={itemName} />

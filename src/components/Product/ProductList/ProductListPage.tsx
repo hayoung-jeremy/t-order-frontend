@@ -1,28 +1,17 @@
 import { useEffect, useState } from "react";
 
+import { categoryProps, categoryItemProps } from "types";
 import {
   StyledProductListWrapper,
   StyledProductCategoryTitle,
 } from "./ProductListPage.style";
-
 import ProductListItem from "../ProductListItem/ProductListItem";
-
-interface categoryProps {
-  categoryId?: number;
-  categoryName?: string;
-  categoryItems?: categoryItemProps[];
-}
-
-interface categoryItemProps {
-  itemId?: number;
-  itemName?: string;
-  itemPrice?: number;
-  itemSoldOutFlag?: boolean;
-  itemImageUrl?: string;
-}
+import { useDispatch } from "react-redux";
+import { addToCart } from "features/cart/cartReducer";
 
 const ProductListPage = () => {
   const [categoryList, setCategoryList] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetch("http://localhost:3001/categories")
@@ -37,6 +26,9 @@ const ProductListPage = () => {
   const productData = categoryList.map((item: categoryProps) => {
     const categoryTitle = item.categoryName;
     const productList = item.categoryItems!.map((item) => {
+      const handleAddToCart = (item: categoryItemProps) => {
+        dispatch(addToCart(item));
+      };
       const itemName = item.itemName;
       const itemImg = item.itemImageUrl;
       const itemPrice = item.itemPrice;
@@ -49,6 +41,7 @@ const ProductListPage = () => {
           itemImg={itemImg}
           itemPrice={itemPrice}
           isItemSoldOut={isItemSoldOut}
+          onClick={() => handleAddToCart(item)}
         ></ProductListItem>
       );
     });
