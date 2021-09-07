@@ -57,8 +57,8 @@ const buttonTypes = css<ButtonProps>`
     props.iconBtn &&
     css`
       display: block;
-      width: 42px;
-      height: 42px;
+      width: 3.125vw;
+      height: 3.125vw;
       background: url("${props.iconUrl}") no-repeat 0 center/cover; ;
     `}
   

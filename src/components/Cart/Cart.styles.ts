@@ -19,7 +19,7 @@ const StyledCart = styled.aside`
 
   & .cart-header {
     padding-top: 3.125vw;
-    margin-bottom: 20px;
+    margin-bottom: 1.5625vw;
 
     & .cart-title {
       font-size: 1.5rem;
@@ -29,7 +29,7 @@ const StyledCart = styled.aside`
 
   & .cart-body {
     overflow-y: scroll;
-    height: 74.64vh;
+    height: 74.6vh;
 
     &::-webkit-scrollbar {
       display: none;
