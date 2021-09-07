@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { cartListProps, categoryItemProps } from "types";
+import { cartListProps, CategoryItemProps } from "types";
 
 const initialState: cartListProps = {
   cartItems: [],
@@ -13,7 +13,7 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart(state, action: PayloadAction<categoryItemProps>) {
+    addToCart(state, action: PayloadAction<CategoryItemProps>) {
       const itemIdx = state.cartItems.findIndex(
         // 동일 상품 추가 시, 개별 추가가 아닌 수량 증가
         (item) => item.itemId === action.payload.itemId

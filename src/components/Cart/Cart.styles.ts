@@ -34,6 +34,10 @@ const StyledCart = styled.aside`
     &::-webkit-scrollbar {
       display: none;
     }
+
+    & .empty-sign {
+      color: ${PALETTE.GREY400};
+    }
   }
 
   & .cart-footer {

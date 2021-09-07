@@ -3,32 +3,39 @@ import React from "react";
 import StyledCart from "./Cart.styles";
 import CartListItem from "./CartListItem/CartListItem";
 import Button from "components/@share/Button/Button";
+import { useAppSelector } from "features/store/rootReducer";
 
 interface Props {
   isCartOpen: boolean;
 }
+
 const Cart = ({ isCartOpen }: Props) => {
+  const cart = useAppSelector((state) => state.cart);
   return (
     <StyledCart className={isCartOpen ? "" : "hide"}>
       <div className="cart-header">
         <h3 className="cart-title">장바구니</h3>
       </div>
       <div className="cart-body">
-        <ul>
-          <CartListItem />
-          <CartListItem />
-          <CartListItem />
-          <CartListItem />
-          <CartListItem />
-          <CartListItem />
-          <CartListItem />
-        </ul>
+        {cart.cartItems.length === 0 ? (
+          <p className="empty-sign">장바구니가 비어있습니다.</p>
+        ) : (
+          cart.cartItems.map((cartItem) => (
+            <CartListItem
+              key={cartItem.itemId}
+              itemName={cartItem.itemName}
+              itemPrice={cartItem.itemPrice}
+              itemSoldOutFlag={cartItem.itemSoldOutFlag}
+              cartItemQuantity={cartItem.cartItemQuantity}
+            />
+          ))
+        )}
       </div>
       <div className="cart-footer">
         <div className="cart-item-info">
-          <span>총 {`2`}가지</span>
+          <span>총 {cart.cartItems.length}가지</span>
           <span className="cart-item-total-price">
-            합계 <span>{`4,000`}원</span>
+            합계 <span>{cart.cartTotalAmount}원</span>
           </span>
         </div>
         <div className="cart-controller">
