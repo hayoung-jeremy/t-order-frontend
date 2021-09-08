@@ -12,6 +12,37 @@ npm run serve
 `npm start` : 프로젝트 실행  
 `npm run serve` : mock server 실행(json-server / port:3001)
 
+## 폴더 구조
+
+```bash
+├─ public
+│   ├─ assets
+│       ├─ icon
+│       └─ img
+└─ src
+   ├─ components
+   │   ├─ @share
+   │   │   ├─ Button
+   │   │   ├─ Layout
+   │   │   └─ Toast
+   │   ├─ Cart
+   │   ├─ Nav
+   │   └─ Product
+   ├─ constants
+   ├─ db
+   ├─ features
+   └─ types
+```
+
+`@share` : 공통으로 쓰이는 버튼, 토스트, 헤더, 푸터, 전체 레이아웃 등에 쓰이는 컴포넌트 폴더  
+`Cart` : 장바구니 폴더  
+`Nav` : 헤더에 있는 카테고리 네비게이션 폴더  
+`Product` : 상품 리스트 폴더  
+`constants` : palette 처럼 전역 상수로 쓰일 요소들을 모을 폴더  
+`db` : mock server 데이터  
+`features` : redux-toolkit 전역 상태관리 폴더  
+`types` : 공용 타입 지정 폴더
+
 ## 기술 스택
 
 - build : create-react-app
