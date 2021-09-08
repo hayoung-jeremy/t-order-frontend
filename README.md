@@ -4,13 +4,15 @@
 
 ```
 npm i
-npm start
+npm i json-server
 npm run serve
+npm start
 ```
 
 `npm i` : 프로젝트 설치  
-`npm start` : 프로젝트 실행  
+`npm i json-server` : json-server 설치  
 `npm run serve` : mock server 실행(json-server / port:3001)
+`npm start` : 프로젝트 실행
 
 ## 폴더 구조
 
