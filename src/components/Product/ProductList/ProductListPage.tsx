@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 import { CategoryProps, CategoryItemProps } from "types";
 import {
   StyledProductListWrapper,
@@ -8,28 +6,20 @@ import {
 import ProductListItem from "../ProductListItem/ProductListItem";
 import { addToCart, toggleCartOpen } from "features/cart/cartReducer";
 import { useAppDispatch, useAppSelector } from "features/store/rootReducer";
+import useFetch from "hooks/useFeth";
 
 const ProductListPage = () => {
-  const [categoryList, setCategoryList] = useState([]);
   const dispatch = useAppDispatch();
   const cart = useAppSelector((state) => state.cart);
 
-  useEffect(() => {
-    fetch("http://localhost:3001/categories")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setCategoryList(data);
-      });
-  }, []);
+  const [data] = useFetch("http://localhost:3001/categories");
 
-  const productData = categoryList.map((item: CategoryProps) => {
+  const productData = data!.map((item: CategoryProps) => {
     const categoryTitle = item.categoryName;
     const productList = item.categoryItems!.map((item) => {
       const handleAddToCart = (item: CategoryItemProps) => {
         dispatch(addToCart(item));
-        if (!cart.isCartOpen) {
+        if (!cart.isCartOpen && !item.itemSoldOutFlag) {
           dispatch(toggleCartOpen());
         } else {
           return null;
